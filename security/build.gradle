@@ -1,0 +1,48 @@
+//plugins {
+//    id 'org.springframework.boot' version '2.4.4'
+//    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//    id 'java'
+//}
+
+group = 'xyz.acproject'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    //mavenCentral()
+    maven {
+        url "https://maven.aliyun.com/nexus/content/groups/public/"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-jwt
+    implementation group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.1.1.RELEASE'
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+    api project(":utils")
+    api project(":lang")
+    api project(":cache")
+}
+
+test {
+    useJUnitPlatform()
+}
+tasks {
+    bootJar { mainClass = "NONE" }
+}
+jar{
+    enabled = true
+}

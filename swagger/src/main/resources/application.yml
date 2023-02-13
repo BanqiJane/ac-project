@@ -1,0 +1,17 @@
+#swagger
+#springfox:
+#  documentation:
+#    swagger-ui:
+#      enabled: false
+##acproject 自定义属性集
+#acproject:
+#  swagger:
+#    enable: true
+#    package: xyz.acproject.touch_community.controller
+#    title: touch社区API
+#    descr: touch社区API
+#    version: 1.0
+#    contact:
+#      name: Jane
+#      network: github
+#      email: email@acproject.xyz

@@ -1,0 +1,35 @@
+spring:
+  aop:
+    proxy-target-class: true
+#  servlet:
+#    multipart:
+#      enabled: true
+#      max-file-size: 10MB
+#      max-request-size: 10MB
+#      resolve-lazily: false
+#      #file-size-threshold: 0
+#      #location:
+#  lifecycle:
+#    timeout-per-shutdown-phase: 25s
+##  jackson:
+##    date-format: yyyy-MM-dd HH:mm:ss
+##    time: GMT+8
+##  mvc:
+##    throw-exception-if-no-handler-found: true
+##  resources:
+##    add-mappings: false
+#
+##编码格式
+#server:
+#  servlet:
+#    encoding:
+#      charset: UTF-8
+#      force: true
+#      enabled: true
+#    context-path: /
+#  tomcat:
+#    uri-encoding: UTF-8
+#  port: 8080
+#  error:
+#    include-exception: true
+#  shutdown: graceful

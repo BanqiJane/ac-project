@@ -1,0 +1,60 @@
+//plugins {
+//    id 'org.springframework.boot' version '2.4.4'
+//    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//    id 'java'
+//}
+
+group = 'xyz.acproject'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    //mavenCentral()
+    maven {
+        url "https://maven.aliyun.com/nexus/content/groups/public/"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.14.0'
+    // https://mvnrepository.com/artifact/com.alibaba/fastjson
+    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.83'
+    //java11 补充包
+//    // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+//    api group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+//    // https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl
+//    api group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '3.0.2'
+//    // https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-core
+//    api group: 'com.sun.xml.bind', name: 'jaxb-core', version: '3.0.2'
+//    // https://mvnrepository.com/artifact/javax.activation/activation
+//    api group: 'javax.activation', name: 'activation', version: '1.1.1'
+//    // https://mvnrepository.com/artifact/javax.xml.ws/jaxws-api
+//    api group: 'javax.xml.ws', name: 'jaxws-api', version: '2.3.1'
+
+
+
+}
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+test {
+    useJUnitPlatform()
+}
+tasks {
+    bootJar { mainClass = "NONE" }
+}
+jar {
+    enabled = true
+}

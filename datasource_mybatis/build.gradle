@@ -1,0 +1,56 @@
+/*
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.6'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+*/
+
+group = 'xyz.acproject'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://maven.aliyun.com/nexus/content/groups/public/"
+    }
+}
+
+dependencies {
+    api 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter
+    api group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.5.2'
+    // https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter
+    api group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.2.15'
+    // https://github.com/yulichang/mybatis-plus-join
+    api 'com.github.yulichang:mybatis-plus-join-boot-starter:1.4.2.2'
+    // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator
+    implementation group: 'com.baomidou', name: 'mybatis-plus-generator', version: '3.5.3'
+    // https://mvnrepository.com/artifact/org.freemarker/freemarker
+    implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.31'
+
+
+    api project(":utils")
+    api project(":lang")
+}
+
+test {
+    useJUnitPlatform()
+}
+tasks {
+    bootJar { mainClass = "NONE" }
+}
+jar{
+    enabled = true
+}

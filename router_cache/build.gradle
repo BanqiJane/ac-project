@@ -1,0 +1,53 @@
+//plugins {
+//    id 'org.springframework.boot' version '2.7.6'
+//    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//    id 'java'
+//}
+
+group = 'xyz.acproject'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    // mavenCentral()
+    maven {
+        url "https://maven.aliyun.com/nexus/content/groups/public/"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.springframework.boot:spring-boot-starter-webflux'
+    compileOnly 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+    api group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'//    implementation project(":router")
+    api 'org.springframework.boot:spring-boot-starter-aop'
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    // https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api
+    compileOnly group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.3'
+//    implementation project(":router_flux")
+    api project(":cache")
+    api project(":utils")
+    api project(":lang")
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+tasks {
+    bootJar { mainClass = "NONE" }
+}
+jar{
+    enabled = true
+}

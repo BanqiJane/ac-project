@@ -1,0 +1,69 @@
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    druid:
+#      #      #????
+#      url: jdbc:mysql://localhost:3306/cola_ka?characterEncoding=utf8&useSSL=false&autoReconnect=true&allowMultiQueries=true&rewriteBatchedStatements=true
+#      username: root
+#      password: 123
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      initial-size: 5
+#      min-idle: 5
+#      max-active: 5
+#      max-wait: 60000
+#      keep-alive: true
+#      keep-alive-between-time-millis: 600000
+#      time-between-eviction-runs-millis: 300000
+#      validation-query: SELECT 1 FROM DUAL
+#      test-while-idle: true
+#      test-on-borrow: true
+#      test-on-return: false
+#      pool-prepared-statements: true
+#      # ?????????filters????????sql?????
+#      #'wall'??????SpringBoot???log4j?????log4j2
+#      filters: stat,wall,log4j2
+#      max-pool-prepared-statement-per-connection-size: 20
+#      use-global-data-source-stat: true
+#      # ??connectProperties?????mergeSql????SQL??
+#      # ??StatFilter
+#      web-stat-filter:
+#        enabled: false
+#        url-pattern: "/*"
+#        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+#      stat-view-servlet:
+#        url-pattern: "/druid/*"
+#        #????ip
+#        #       allow: 127.0.0.1
+#        login-username: admin
+#        login-password: 123456
+#        #????ip
+#        #                deny: 192.168.1.102
+#        #??????
+#        #??
+#        enabled: false
+#        reset-enable: true
+#      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+#
+#mybatis:
+#  typeAliasesPackage: xyz.acproject.touch_cola_ka
+#  # mapper.xml???????????resources??
+#  mapperLocations: classpath*:mapper/*.xml
+#mybatis-plus:
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    auto-mapping-behavior: full
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  mapper-locations: classpath*:mapper/**/*Dao.xml
+#  global-config:
+#    # ??????
+#    db-config:
+#      # ???
+#      logic-not-delete-value: 1
+#      # ???
+#      logic-delete-value: 0
+#      #????
+#      id-type: auto
+##      insert-strategy: IGNORED
+
+

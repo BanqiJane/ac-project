@@ -1,0 +1,8 @@
+#acproject:
+#  qiniu:
+#    accessKey:
+#    secretKey:
+#    domain: qiniu.touchdot.top
+#    bucketName: pingan
+#    zone:
+#    prefix:

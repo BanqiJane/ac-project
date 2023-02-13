@@ -1,0 +1,37 @@
+spring:
+  aop:
+    proxy-target-class: true
+#  servlet:
+#    multipart:
+#      enabled: true
+#      max-file-size: 10MB
+#      max-request-size: 10MB
+#      resolve-lazily: false
+#      #file-size-threshold: 0
+#      #location:
+#  lifecycle:
+#    timeout-per-shutdown-phase: 25s
+##????
+#server:
+#  servlet:
+#    encoding:
+#      charset: UTF-8
+#      force: true
+#      enabled: true
+#  # port:
+#  port: 8080
+#  error:
+#    include-exception: true
+#  shutdown: graceful
+
+##acproject ??????
+#acproject:
+#  webflux:
+#    miss-field: true
+#    max-file-num:
+#    max-file-size:
+#    static:
+#      paths:
+#      prefix:
+#      enable: true
+#      type: DEFALUT

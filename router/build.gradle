@@ -1,0 +1,50 @@
+//plugins {
+//    id 'org.springframework.boot' version '2.4.4'
+//    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//    id 'java'
+//}
+
+group = 'xyz.acproject'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    //mavenCentral()
+    maven {
+        url "https://maven.aliyun.com/nexus/content/groups/public/"
+    }
+}
+
+dependencies {
+    api 'org.springframework.boot:spring-boot-starter-validation'
+    api 'org.springframework.boot:spring-boot-starter'
+    api 'org.springframework.boot:spring-boot-starter-undertow'
+    api('org.springframework.boot:spring-boot-starter-web'){
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
+    api 'org.springframework.boot:spring-boot-starter-aop'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+    api group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+    api project(":cache")
+    api project(":utils")
+    api project(":lang")
+}
+
+test {
+    useJUnitPlatform()
+}
+tasks {
+    bootJar { mainClass = "NONE" }
+}
+jar{
+    enabled = true
+}

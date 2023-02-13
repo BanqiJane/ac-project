@@ -1,0 +1,111 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'application'
+    id 'org.springframework.boot' version '2.7.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//    id 'org.springframework.experimental.aot' version '0.10.0-SNAPSHOT'
+}
+group 'xyz.acproject'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/repository/public" }
+    mavenCentral()
+    maven { url 'https://repo.spring.io/snapshot' }
+//    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+/*    maven { url 'https://maven.springframework.org/release' }
+    maven { url 'https://maven.springframework.org/milestone' }
+    maven { url "https://maven.acproject.xyz/repository/acproject/"}*/
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+ //   api project(":")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+bootJar {
+
+    enabled =false  // 默认不需要打可执行jar包
+
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+//    if(name.startsWith("image")) {
+//        apply plugin: 'org.springframework.experimental.aot'
+//    }
+    version = '1.0-SNAPSHOT'
+
+    // JVM 版本号要求
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+    //定义版本号
+    ext {
+        springBootVar = '2.7.6'
+    }
+    bootJar {
+
+        enabled =true  // 默认不需要打可执行jar包
+
+    }
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/repository/public" }
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+        maven { url 'https://repo.spring.io/release' }
+//        maven { url 'https://maven.springframework.org/release' }
+//        maven { url 'https://maven.springframework.org/milestone' }
+//        maven { url "https://maven.acproject.xyz/repository/acproject/"}
+//        maven { url 'https://repo.spring.io/snapshot' }
+    }
+
+    dependencies {
+        api("org.springframework.boot:spring-boot-starter-log4j2:$springBootVar")
+
+//        testCompile(
+//        )
+    }
+
+    jar {
+        manifest {
+            attributes("Implementation-Title": "Gradle")
+        }
+    }
+
+    configurations {
+        // 所有需要忽略的包定义在此
+        //all*.exclude group: 'commons-httpclient'
+        //all*.exclude group: 'commons-logging'
+        all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
+
+    // 显示当前项目下所有用于 compile 的 jar.
+//    task listJars(description: 'Display all compile jars.') << {
+//        configurations.compile.each { File file -> println file.name }
+//    }
+//
+//    gradle.projectsEvaluated {
+//        tasks.withType(JavaCompile) {
+//            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+//        }
+//    }
+}

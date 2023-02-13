@@ -1,0 +1,17 @@
+#spring:
+#  mail:
+#    host: smtp.exmail.qq.com
+#    default-encoding: utf-8
+#    username:
+#    password:
+#    port: 465
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          socketFactory:
+#            port: 465
+#            class: javax.net.ssl.SSLSocketFactory
+#          starttls:
+#            enable: true
+#    protocol: smtp

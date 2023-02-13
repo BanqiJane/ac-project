@@ -1,0 +1,44 @@
+//该配置为了兼容gralvm插件
+pluginManagement {
+    repositories {
+        // ...
+        maven { url 'https://repo.spring.io/snapshot' }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+//create by  https://github.com/BanqiJane
+rootProject.name = 'acproject'
+/*     common module     */
+//common module start java1.8  need update
+/*缓存模块  2.0.11 */
+include 'cache'
+/*工具类模块 2.0.11  */
+include 'utils'
+/*路由模块（springmvc）2.0.11  */
+include 'router'
+/*路由模块（spring webflux） 2.0.11 */
+include 'router_flux'
+/*路由缓存模块（spring webflux & mvc & cache） 2.0.11 */
+include 'router_cache'
+/*通用模块  2.0.11 */
+include 'lang'
+/*邮件模块 2.0.11 */
+include 'email'
+/*安全模块（spring security并提供mvc支持）2.0.11  */
+include 'security'
+/*安全模块（spring security并提供webflux支持）2.0.11  */
+include 'security_flux'
+/*文档模块 2.0.11 */
+include 'swagger'
+/*websocket模块 2.0.11 */
+include 'websocket'
+/*懒人数据源mybatis */
+include 'datasource_mybatis'
+/* shiro */
+include 'shiro'
+
+//touch end
+/*    other     java1.8*/
+include 'security_demo'
+include 'security_flux_demo'

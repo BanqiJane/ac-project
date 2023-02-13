@@ -1,0 +1,54 @@
+//plugins {
+//    id 'java'
+//    id 'org.springframework.boot' version '2.7.7'
+//    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+//}
+
+group = 'xyz.acproject'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'xerces', name: 'xercesImpl', version: '2.12.2'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter
+    implementation group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.5.2'
+    // https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter
+    implementation group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.2.15'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-jwt
+    implementation group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.1.1.RELEASE'
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
+    //acproject
+//    implementation("xyz.acproject:mybatis-plus-join:1.2.0")
+    implementation project(":cache")
+    implementation project(":utils")
+    implementation project(":lang")
+    implementation project(":router_flux")
+    implementation project(":router_cache")
+    implementation project(":security_flux")
+    implementation project(":datasource_mybatis")
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
