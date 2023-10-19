@@ -3,13 +3,12 @@ package xyz.acproject.datasource_mybatis.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.yulichang.base.MPJBaseServiceImpl;
-import xyz.acproject.datasource_mybatis.dao.BaseDao;
+import com.github.yulichang.query.MPJLambdaQueryWrapper;
+import com.github.yulichang.query.MPJQueryWrapper;
 import xyz.acproject.datasource_mybatis.dao.BaseJoinDao;
 import xyz.acproject.datasource_mybatis.entity.BaseEntity;
 import xyz.acproject.datasource_mybatis.service.BaseJoinService;
-import xyz.acproject.datasource_mybatis.service.BaseService;
 import xyz.acproject.lang.page.Page;
 import xyz.acproject.lang.page.PageBean;
 
@@ -40,14 +39,20 @@ public abstract class BaseJoinServiceImpl<D extends BaseJoinDao<T>,T extends Bas
         return this.list(queryWrapper);
     }
 
-    public PageBean<T> pageBean(Page page, QueryWrapper<T> queryWrapper){
-        IPage<T> iPage = page(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(page.getPageNow(), page.getPageSize()), queryWrapper);
-        return new PageBean(iPage.getRecords(), page);
+    public PageBean<T> pageBean(Page page, MPJQueryWrapper<T> queryWrapper){
+        IPage<T> iPage = selectJoinListPage(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(page.getPageNow(), page.getPageSize()),queryWrapper.getEntityClass(), queryWrapper);
+        return new PageBean<>(iPage.getRecords(), page);
     }
 
-    public PageBean<T> pageBeanEnable(Page page, QueryWrapper<T> queryWrapper){
+    public PageBean<T> pageBeanEnable(Page page, MPJQueryWrapper<T> queryWrapper){
         queryWrapper.eq("enable",true);
-        IPage<T> iPage = page(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(page.getPageNow(), page.getPageSize()), queryWrapper);
-        return new PageBean(iPage.getRecords(), page);
+        IPage<T> iPage = selectJoinListPage(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(page.getPageNow(), page.getPageSize()),queryWrapper.getEntityClass(), queryWrapper);
+        return new PageBean<>(iPage.getRecords(), page);
     }
+
+    public PageBean<T> pageBean(Page page, MPJLambdaQueryWrapper<T> queryWrapper){
+        IPage<T> iPage = selectJoinListPage(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(page.getPageNow(), page.getPageSize()),queryWrapper.getEntityClass(), queryWrapper);
+        return new PageBean<>(iPage.getRecords(), page);
+    }
+
 }

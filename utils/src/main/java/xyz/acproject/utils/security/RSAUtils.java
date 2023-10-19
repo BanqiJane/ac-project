@@ -15,8 +15,6 @@ import java.security.spec.RSAPublicKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**

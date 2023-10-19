@@ -3,6 +3,14 @@ package xyz.acproject.utils.security;
 import java.io.*;
 
 
+/**
+ * base64编码自定义
+ *
+ * @author Admin
+ * @date 2023/04/17
+ * @Deprecated 废除 存在阻塞 高并发下会出现问题 while循环阻塞 以后请用 AESUtils代替
+ */
+@Deprecated
 public class BASE64EncoderUtils {
     private static final char[] PEM_ARRAY = {
             // 0  1   2   3    4    5    6    7

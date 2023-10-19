@@ -12,7 +12,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.result.view.ViewResolver;
-import xyz.acproject.router_flux.advice.GlobalErrorWebExceptionHandler;
 import xyz.acproject.security_flux.advice.SecurityErrorWebExceptionHandler;
 
 import java.util.stream.Collectors;

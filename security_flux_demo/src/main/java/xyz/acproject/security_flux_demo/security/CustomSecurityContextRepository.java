@@ -11,7 +11,6 @@ import org.springframework.security.web.server.context.ServerSecurityContextRepo
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-import xyz.acproject.lang.exception.AuthException;
 
 /**
  * @author Jane
@@ -25,7 +24,9 @@ public class CustomSecurityContextRepository implements ServerSecurityContextRep
     private CustomAuthenticationManager customAuthenticationManager;
     @Override
     public Mono<Void> save(ServerWebExchange serverWebExchange, SecurityContext securityContext) {
-        throw new AuthException();
+//        throw new AuthException();
+        System.err.println(securityContext.getAuthentication().getName());
+        return Mono.empty();
     }
 
     @Override

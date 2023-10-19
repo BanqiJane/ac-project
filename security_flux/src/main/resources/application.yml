@@ -1,4 +1,4 @@
 #acproject:
 #  security:
 #    expire: 259200
-#    secret: security_secret_key
+#    secret: touch_security_secret_key_by_jane

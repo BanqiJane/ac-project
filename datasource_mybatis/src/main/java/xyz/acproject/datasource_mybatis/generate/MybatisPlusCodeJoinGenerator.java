@@ -5,13 +5,10 @@ import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-import xyz.acproject.datasource_mybatis.dao.BaseDao;
 import xyz.acproject.datasource_mybatis.dao.BaseJoinDao;
 import xyz.acproject.datasource_mybatis.entity.BaseEntity;
 import xyz.acproject.datasource_mybatis.service.BaseJoinService;
-import xyz.acproject.datasource_mybatis.service.BaseService;
 import xyz.acproject.datasource_mybatis.service.impl.BaseJoinServiceImpl;
-import xyz.acproject.datasource_mybatis.service.impl.BaseServiceImpl;
 
 import java.util.Collections;
 

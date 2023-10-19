@@ -1,6 +1,5 @@
 package xyz.acproject.datasource_mybatis.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.yulichang.base.MPJBaseService;
 import xyz.acproject.datasource_mybatis.entity.BaseEntity;
 

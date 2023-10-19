@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.coobird.thumbnailator.geometry.Positions;
 
-import java.io.File;
-
 /**
  * @author Jane
  * @ClassName ImageParam

@@ -3,7 +3,6 @@ package xyz.acproject.security_flux_demo.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -12,10 +11,8 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers;
 import xyz.acproject.security_flux.exception.CustomAccessDeniedHandler;
 import xyz.acproject.security_flux.exception.CustomizedAuthenticationEntryPoint;
-import xyz.acproject.security_flux_demo.security.CustomAuthenticationManager;
 import xyz.acproject.security_flux_demo.security.CustomSecurityContextRepository;
 
 import javax.annotation.Resource;
@@ -33,20 +30,21 @@ import javax.annotation.Resource;
 public class WebFluxSecurityConfig {
     private CustomAccessDeniedHandler customAccessDeniedHandler;
     private CustomizedAuthenticationEntryPoint customizedAuthenticationEntryPoint;
-    @Resource(name = "customAuthenticationManager")
-    private CustomAuthenticationManager customAuthenticationManager;
+//    @Resource(name = "customAuthenticationManager")
+//    private CustomAuthenticationManager customAuthenticationManager;
     @Resource(name = "customSecurityContextRepository")
     private CustomSecurityContextRepository customSecurityContextRepository;
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http){
+        // .securityMatcher 指定路由
         return http
                 .exceptionHandling()
                 .authenticationEntryPoint(customizedAuthenticationEntryPoint).accessDeniedHandler(customAccessDeniedHandler).and()
                 .csrf().disable()
                 .formLogin().disable()
                 .httpBasic().disable()
-                .authenticationManager(customAuthenticationManager)
+//                .authenticationManager(customAuthenticationManager)
                 .securityContextRepository(customSecurityContextRepository)
                 .authorizeExchange()
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()

@@ -2,7 +2,6 @@ package xyz.acproject.cache.config;
 
 import lombok.Data;
 import org.springframework.data.redis.connection.RedisPassword;
-import org.springframework.lang.Nullable;
 
 /**
  * @author Jane

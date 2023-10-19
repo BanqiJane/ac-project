@@ -7,7 +7,6 @@ import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 import org.springframework.lang.Nullable;
-import org.springframework.util.CollectionUtils;
 
 import java.sql.Timestamp;
 import java.util.*;

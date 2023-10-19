@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
-import xyz.acproject.lang.exception.SystemForbiddenException;
 import xyz.acproject.security_flux.service.JwtService;
 
 import javax.annotation.Resource;

@@ -2,8 +2,8 @@
 #  mail:
 #    host: smtp.exmail.qq.com
 #    default-encoding: utf-8
-#    username:
-#    password:
+#    username: email@acproject.xyz
+#    password: Qq13828089037
 #    port: 465
 #    properties:
 #      mail:

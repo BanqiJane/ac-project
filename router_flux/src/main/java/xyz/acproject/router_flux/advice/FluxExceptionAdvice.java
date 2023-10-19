@@ -1,5 +1,6 @@
 package xyz.acproject.router_flux.advice;
 
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.core.annotation.Order;
@@ -10,11 +11,11 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebInputException;
 import reactor.core.publisher.Mono;
 import xyz.acproject.lang.enums.HttpCodeEnum;
@@ -39,27 +40,25 @@ import java.util.Set;
 public class FluxExceptionAdvice {
     private static final Logger LOGGER = LogManager.getLogger(FluxExceptionAdvice.class);
 
-        /**
-
-         * 400 - Bad Request
-
-         */
-        @ResponseStatus(HttpStatus.BAD_REQUEST)
-        @ExceptionHandler(ServerWebInputException.class)
-        public Mono<Response>  handleMissingServletRequestParameterException(ServerWebInputException e,@RequestParam(required = false) BindingResult bindingResult) {
-            String detail_error = "";
-            if(bindingResult!=null){
-                if(bindingResult.hasErrors()){
-                    detail_error = bindingResult.getFieldError().getDefaultMessage();
-                }
+    /**
+     * 400 - Bad Request
+     */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ServerWebInputException.class)
+    public Mono<Response> handleMissingServletRequestParameterException(ServerWebInputException e,
+                                                                        @RequestParam(required = false) BindingResult bindingResult) {
+        String detail_error = "";
+        if (bindingResult != null) {
+            if (bindingResult.hasErrors()) {
+                detail_error = bindingResult.getFieldError().getDefaultMessage();
             }
-            LOGGER.error("参数格式传递异常:{},{}",detail_error,e.getMessage());
-            HttpCodeEnum httpCodeEnum = HttpCodeEnum.paramserror;
-            httpCodeEnum.setCn_msg("参数格式传递异常："+detail_error);
-            httpCodeEnum.setMsg(e.getMessage());
-            return Mono.justOrEmpty(new Response().custom(httpCodeEnum));
         }
-
+        LOGGER.error("参数格式传递异常:{},{}", detail_error, e.getMessage());
+        HttpCodeEnum httpCodeEnum = HttpCodeEnum.paramserror;
+        httpCodeEnum.setCn_msg("参数格式传递异常：" + detail_error);
+        httpCodeEnum.setMsg(e.getMessage());
+        return Mono.justOrEmpty(new Response().custom(httpCodeEnum));
+    }
 
 
     /**
@@ -252,12 +251,13 @@ public class FluxExceptionAdvice {
     public Mono<Response> handleException(Exception e) {
         LOGGER.error("未知错误:{}", e.getMessage());
         e.printStackTrace();
-//            if(e instanceof org.springframework.web.servlet.NoHandlerFoundException){
-//                LOGGER.error("404", e);
-//                return new Response().custom(HttpCodeEnum.notfound);
-//            }
+        if (e instanceof ResponseStatusException) {
+            LOGGER.error("404", e);
+            return Mono.justOrEmpty(new Response().custom(HttpCodeEnum.notfound));
+        }
         return Mono.justOrEmpty(new Response().custom(HttpCodeEnum.custom.msg(e.getMessage()).code(-400)));
     }
+
 
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(CustomException.class)

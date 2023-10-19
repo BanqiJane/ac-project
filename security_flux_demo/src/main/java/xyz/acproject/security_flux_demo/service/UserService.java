@@ -1,7 +1,7 @@
 package xyz.acproject.security_flux_demo.service;
 
-import xyz.acproject.security_flux_demo.entity.User;
 import xyz.acproject.datasource_mybatis.service.BaseService;
+import xyz.acproject.security_flux_demo.entity.User;
 
 /**
  * <p>

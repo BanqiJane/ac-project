@@ -2,13 +2,13 @@ plugins {
     id 'java'
     id 'java-library'
     id 'application'
-    id 'org.springframework.boot' version '2.7.6'
+    id 'org.springframework.boot' version '2.7.11'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 //    id 'org.springframework.experimental.aot' version '0.10.0-SNAPSHOT'
 }
 group 'xyz.acproject'
 version '1.0-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenLocal()
@@ -50,14 +50,14 @@ subprojects {
     version = '1.0-SNAPSHOT'
 
     // JVM 版本号要求
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
     // java编译的时候缺省状态下会因为中文字符而失败
     [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
     //定义版本号
     ext {
-        springBootVar = '2.7.6'
+        springBootVar = '2.7.11'
     }
     bootJar {
 

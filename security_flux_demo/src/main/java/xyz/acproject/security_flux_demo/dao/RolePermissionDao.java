@@ -2,7 +2,6 @@ package xyz.acproject.security_flux_demo.dao;
 
 import com.github.yulichang.base.MPJBaseMapper;
 import xyz.acproject.security_flux_demo.entity.RolePermission;
-import xyz.acproject.datasource_mybatis.dao.BaseDao;
 
 /**
  * <p>

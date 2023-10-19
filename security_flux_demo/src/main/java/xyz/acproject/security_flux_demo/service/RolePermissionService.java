@@ -1,10 +1,8 @@
 package xyz.acproject.security_flux_demo.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.yulichang.base.MPJBaseService;
 import xyz.acproject.security_flux_demo.entity.Permission;
 import xyz.acproject.security_flux_demo.entity.RolePermission;
-import xyz.acproject.datasource_mybatis.service.BaseService;
 
 import java.util.List;
 

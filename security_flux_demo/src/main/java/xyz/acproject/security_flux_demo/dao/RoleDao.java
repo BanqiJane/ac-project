@@ -1,7 +1,7 @@
 package xyz.acproject.security_flux_demo.dao;
 
-import xyz.acproject.security_flux_demo.entity.Role;
 import xyz.acproject.datasource_mybatis.dao.BaseDao;
+import xyz.acproject.security_flux_demo.entity.Role;
 
 /**
  * <p>

@@ -8,13 +8,10 @@ import xyz.acproject.security_flux.service.JwtService;
 import xyz.acproject.security_flux.service.TokenService;
 import xyz.acproject.utils.SpringUtils;
 import xyz.acproject.utils.StringsUtils;
-import xyz.acproject.utils.random.RandomUtils;
-import xyz.acproject.utils.security.BASE64EncoderUtils;
+import xyz.acproject.utils.enums.AESInstance;
+import xyz.acproject.utils.security.AESUtils;
 
 import javax.annotation.Resource;
-import java.io.IOException;
-import java.lang.annotation.Retention;
-import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,7 +34,7 @@ public class RedisJwtTokenServiceImpl implements TokenService {
 
     private Long expire_time = 60 * 60 * 3L;
 
-
+    private String aesKey = "acwwwWw248wwwww1ww9wwAAAww55www1";
     @Override
     public boolean isTokenExpired(String token) {
         String hKey = StringUtils.isNotBlank(this.prefix) ?  StringsUtils.appendAll(this.prefix,":",token) : token;
@@ -97,7 +94,7 @@ public class RedisJwtTokenServiceImpl implements TokenService {
                 .buildSelf();
         String token =jwtService.generateToken(userDetail);
         String hKey = StringUtils.isNotBlank(this.prefix) ? StringsUtils.appendAll(this.prefix,"_",userId,":",token) : token;
-        synchronized (userId) {
+        synchronized (userDetail) {
             Set<String> set = redisService.scan(StringsUtils.appendAll(this.prefix,"_",userId,"*"));
             if (CollectionUtils.isEmpty(set)) set = new HashSet<>();
             if (max != 0) {
@@ -119,9 +116,8 @@ public class RedisJwtTokenServiceImpl implements TokenService {
                 .password(uuid)
                 .uuid(uuid)
                 .buildSelf();
-        BASE64EncoderUtils base64EncoderUtils = new BASE64EncoderUtils();
         try {
-            String u = base64EncoderUtils.encode(uuid.getBytes(StandardCharsets.UTF_8));
+            String u = AESUtils.aesEncryptStr(uuid,aesKey, AESInstance.CBC.instance("AES/CBC/PKCS5Padding"));
             String token = jwtService.generateToken(userDetail)+u;
             String hKey = StringUtils.isNotBlank(this.prefix) ?StringsUtils.appendAll(this.prefix,"_",uuid,":",token) : token;
             synchronized (uuid) {
@@ -173,7 +169,7 @@ public class RedisJwtTokenServiceImpl implements TokenService {
                 .buildSelf();
         String token =jwtService.generateToken(userDetail);
         String hKey = StringUtils.isNotBlank(this.prefix) ? StringsUtils.appendAll(this.prefix,"_",userId,":",token) : token;
-        synchronized (userId) {
+        synchronized (userDetail) {
             Set<String> set = redisService.scan(StringsUtils.appendAll(this.prefix,"_",userId,"*"));
             if (CollectionUtils.isEmpty(set)) set = new HashSet<>();
             if (max != 0) {
@@ -195,9 +191,8 @@ public class RedisJwtTokenServiceImpl implements TokenService {
                 .password(uuid)
                 .uuid(uuid)
                 .buildSelf();
-        BASE64EncoderUtils base64EncoderUtils = new BASE64EncoderUtils();
         try {
-            String u = base64EncoderUtils.encode(uuid.getBytes(StandardCharsets.UTF_8));
+            String u = AESUtils.aesEncryptStr(uuid,aesKey, AESInstance.CBC.instance("AES/CBC/PKCS5Padding"));
             String token = jwtService.generateToken(userDetail)+u;
             String hKey = StringUtils.isNotBlank(this.prefix) ?StringsUtils.appendAll(this.prefix,"_",uuid,":",token) : token;
             synchronized (uuid) {
@@ -222,37 +217,22 @@ public class RedisJwtTokenServiceImpl implements TokenService {
 
     @Override
     public UserDetail getTokenByUserDetail(String token) {
-        BASE64EncoderUtils base64EncoderUtils = new BASE64EncoderUtils();
-        try {
-            String tokenP  = new String(base64EncoderUtils.decode(token.substring(40)),"utf-8");
-            token = StringUtils.isNotBlank(this.prefix) ? StringsUtils.appendAll(this.prefix,"_",tokenP,":",token) : token;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String tokenP  = AESUtils.aesDecodeStr(token.substring(40),aesKey, AESInstance.CBC.instance("AES/CBC/PKCS5Padding"));
+        token = StringUtils.isNotBlank(this.prefix) ? StringsUtils.appendAll(this.prefix,"_",tokenP,":",token) : token;
         return redisService.get(token);
     }
 
     @Override
     public Long getTokenByLong(String token) {
-        BASE64EncoderUtils base64EncoderUtils = new BASE64EncoderUtils();
-        try {
-            String tokenP  = new String(base64EncoderUtils.decode(token.substring(40)),"utf-8");
-            token = StringUtils.isNotBlank(this.prefix) ? StringsUtils.appendAll(this.prefix,"_",tokenP,":",token) : token;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String tokenP  =  AESUtils.aesDecodeStr(token.substring(40),aesKey, AESInstance.CBC.instance("AES/CBC/PKCS5Padding"));
+        token = StringUtils.isNotBlank(this.prefix) ? StringsUtils.appendAll(this.prefix,"_",tokenP,":",token) : token;
         return redisService.get(token);
     }
 
     @Override
     public String getTokenByString(String token) {
-        BASE64EncoderUtils base64EncoderUtils = new BASE64EncoderUtils();
-        try {
-            String tokenP  = new String(base64EncoderUtils.decode(token.substring(40)),"utf-8");
-            token = StringUtils.isNotBlank(this.prefix) ? StringsUtils.appendAll(this.prefix,"_",tokenP,":",token) : token;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String tokenP  =  AESUtils.aesDecodeStr(token.substring(40),aesKey, AESInstance.CBC.instance("AES/CBC/PKCS5Padding"));
+        token = StringUtils.isNotBlank(this.prefix) ? StringsUtils.appendAll(this.prefix,"_",tokenP,":",token) : token;
         return redisService.get(token);
     }
 

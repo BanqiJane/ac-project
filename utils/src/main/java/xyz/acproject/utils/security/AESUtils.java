@@ -5,8 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import xyz.acproject.utils.io.ByteUtils;
 import xyz.acproject.utils.enums.AESInstance;
+import xyz.acproject.utils.io.ByteUtils;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -188,9 +188,9 @@ public class AESUtils {
         byte[] bytes2 = ByteUtils.hexToByteArray(hex);
         System.out.println("待加密报文:" + content);
         System.out.println("密匙:" + pkey);
-        String aesEncryptStr = aesEncryptBytes(content, pkey.getBytes(),AESInstance.CBC);
+        String aesEncryptStr = aesEncryptBytes(content, pkey.getBytes(),AESInstance.CBC.instance("AES/CBC/PKCS5Padding"));
         System.out.println("加密报文:" + aesEncryptStr);
-        String aesDecodeStr = aesDecodeBytes(aesEncryptStr,  pkey.getBytes(),AESInstance.CBC);
+        String aesDecodeStr = aesDecodeBytes(aesEncryptStr,  pkey.getBytes(),AESInstance.CBC.instance("AES/CBC/PKCS5Padding"));
         System.out.println("解密报文:" + aesDecodeStr);
         System.out.println("加解密前后内容是否相等:" + aesDecodeStr.equals(content));
     }

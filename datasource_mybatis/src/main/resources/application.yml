@@ -1,10 +1,10 @@
 #spring:
 #  datasource:
-#    driver-class-name: com.mysql.jdbc.Driver
+#    driver-class-name: com.mysql.cj.jdbc.Driver
 #    type: com.alibaba.druid.pool.DruidDataSource
 #    druid:
 #      #      #????
-#      url: jdbc:mysql://localhost:3306/cola_ka?characterEncoding=utf8&useSSL=false&autoReconnect=true&allowMultiQueries=true&rewriteBatchedStatements=true
+#      url: jdbc:mysql://localhost:3306/cola_ka?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&rewriteBatchedStatements=true
 #      username: root
 #      password: 123
 #      driver-class-name: com.mysql.cj.jdbc.Driver

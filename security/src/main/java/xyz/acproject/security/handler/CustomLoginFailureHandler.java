@@ -20,6 +20,8 @@ import java.io.PrintWriter;
  * @Copyright:2021
  */
 public class CustomLoginFailureHandler implements AuthenticationFailureHandler {
+
+
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);

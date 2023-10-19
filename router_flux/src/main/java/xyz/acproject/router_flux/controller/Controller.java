@@ -2,8 +2,6 @@ package xyz.acproject.router_flux.controller;
 
 import org.reactivestreams.Publisher;
 import org.springframework.core.io.buffer.DataBuffer;
-import org.springframework.core.io.buffer.DefaultDataBuffer;
-import org.springframework.core.io.buffer.DefaultDataBufferFactory;
 import org.springframework.http.ZeroCopyHttpOutputMessage;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
@@ -12,10 +10,6 @@ import reactor.core.publisher.Mono;
 import xyz.acproject.lang.enums.HttpCodeEnum;
 import xyz.acproject.lang.page.PageBean;
 import xyz.acproject.lang.response.Response;
-import xyz.acproject.utils.FastJsonUtils;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 /**
  * @author Jane
@@ -58,8 +52,8 @@ public abstract class Controller {
         return Mono.justOrEmpty(new Response().custom(httpCodeEnum));
     }
 
-    protected Mono<Response> page(PageBean pageBean) {
-        return Mono.justOrEmpty(new Response().page(pageBean.getPage(), pageBean.getList()));
+    protected void page(PageBean<?> pageBean){
+        Response.pageBean(pageBean);
     }
 
     protected Mono<Void> empty(){

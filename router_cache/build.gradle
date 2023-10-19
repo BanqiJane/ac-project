@@ -6,7 +6,7 @@
 
 group = 'xyz.acproject'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
     compileOnly {
@@ -36,6 +36,11 @@ dependencies {
     compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
     // https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api
     compileOnly group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.3'
+//    // https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
+//    compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.0.0'
+//    // https://mvnrepository.com/artifact/jakarta.servlet.jsp/jakarta.servlet.jsp-api
+//    compileOnly group: 'jakarta.servlet.jsp', name: 'jakarta.servlet.jsp-api', version: '3.1.1'
+
 //    implementation project(":router_flux")
     api project(":cache")
     api project(":utils")

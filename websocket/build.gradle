@@ -6,7 +6,7 @@
 
 group = 'xyz.acproject'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
     compileOnly {
@@ -24,7 +24,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     // https://mvnrepository.com/artifact/io.netty/netty-all
-    implementation group: 'io.netty', name: 'netty-all', version: '4.1.77.Final'
+    implementation group: 'io.netty', name: 'netty-all', version: '4.1.90.Final'
     api project(":utils")
 }
 

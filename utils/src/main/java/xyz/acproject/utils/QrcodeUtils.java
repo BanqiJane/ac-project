@@ -6,10 +6,9 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import org.springframework.util.Base64Utils;
+import com.qiniu.util.Base64;
 
 import javax.imageio.ImageIO;
-//import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -56,8 +55,9 @@ public class QrcodeUtils {
             //转换成png格式的IO流
             ImageIO.write(image, "jpg", out);
             byte[] bytes = out.toByteArray();
-            // 2、将字节数组转为二进制
-            binary = Base64Utils.encodeToString(bytes).trim();
+            // 2、将字节数组转为二进制 1.8 - 17
+//            binary = Base64Utils.encodeToString(bytes).trim();
+            binary = Base64.encodeToString(bytes,0).trim();
         } catch (WriterException e) { // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {

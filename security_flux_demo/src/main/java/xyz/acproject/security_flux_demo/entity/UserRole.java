@@ -1,7 +1,6 @@
 package xyz.acproject.security_flux_demo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import xyz.acproject.datasource_mybatis.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;

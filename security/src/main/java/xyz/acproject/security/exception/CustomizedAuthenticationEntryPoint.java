@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import xyz.acproject.lang.enums.HttpCodeEnum;
 import xyz.acproject.lang.response.Response;
 import xyz.acproject.utils.FastJsonUtils;

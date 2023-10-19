@@ -1,6 +1,5 @@
 package xyz.acproject.utils.io;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.util.regex.Matcher;

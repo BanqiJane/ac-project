@@ -6,7 +6,6 @@ import okhttp3.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import xyz.acproject.utils.http.OkHttpUtils;
 import xyz.acproject.utils.http.data.FormFileData;
 import xyz.acproject.utils.http.type.Utf8MediaType;
 

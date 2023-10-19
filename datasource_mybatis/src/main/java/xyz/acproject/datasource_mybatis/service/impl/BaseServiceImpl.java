@@ -1,5 +1,6 @@
 package xyz.acproject.datasource_mybatis.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -40,14 +41,18 @@ public abstract class BaseServiceImpl<D extends BaseDao<T>,T extends BaseEntity>
 
     public PageBean<T> pageBean(Page page, QueryWrapper<T> queryWrapper){
         IPage<T> iPage = page(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(page.getPageNow(), page.getPageSize()), queryWrapper);
-        return new PageBean(iPage.getRecords(), page);
+        return new PageBean<>(iPage.getRecords(), page);
     }
 
     public PageBean<T> pageBeanEnable(Page page, QueryWrapper<T> queryWrapper){
         queryWrapper.eq("enable",true);
         IPage<T> iPage = page(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(page.getPageNow(), page.getPageSize()), queryWrapper);
-        return new PageBean(iPage.getRecords(), page);
+        return new PageBean<>(iPage.getRecords(), page);
     }
 
+    public PageBean<T> pageBean(Page page, LambdaQueryWrapper<T> queryWrapper){
+        IPage<T> iPage = page(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(page.getPageNow(), page.getPageSize()), queryWrapper);
+        return new PageBean<>(iPage.getRecords(), page);
+    }
 
 }

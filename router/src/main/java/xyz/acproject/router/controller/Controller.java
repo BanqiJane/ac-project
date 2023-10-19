@@ -21,6 +21,10 @@ public abstract class Controller {
         return new Response().success();
     }
 
+    protected Response error(String msg) {
+        return new Response().failure(msg);
+    }
+
     protected <T> Response success(T t) {
         return new Response().success().data(t);
     }
@@ -29,7 +33,7 @@ public abstract class Controller {
         return new Response ().custom(httpCodeEnum);
     }
 
-    protected Response page(PageBean pageBean) {
-        return new Response().page(pageBean.getPage(), pageBean.getList());
+    protected void page(PageBean<?> pageBean) {
+        Response.pageBean(pageBean);
     }
 }

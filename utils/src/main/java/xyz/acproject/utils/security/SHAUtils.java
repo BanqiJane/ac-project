@@ -5,7 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 import xyz.acproject.utils.io.ByteUtils;
 
 import javax.crypto.Mac;
-import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;

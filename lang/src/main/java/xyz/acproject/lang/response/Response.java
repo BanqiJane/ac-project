@@ -2,8 +2,10 @@ package xyz.acproject.lang.response;
 
 import lombok.Getter;
 import xyz.acproject.lang.enums.HttpCodeEnum;
+import xyz.acproject.lang.page.PageBean;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -16,7 +18,7 @@ import java.util.Map;
  * @update last update by jane add T
  */
 @Getter
-public final class Response {
+public final class Response<T> {
 
     /**
      * 状态码 理论上0之外都是异常状态码 参考地址 https://apidoc.touchdot.top/code
@@ -37,9 +39,10 @@ public final class Response {
     /**
     * 数据本体
     */
-    private Object data;
+    private T data;
 
-    private static final ThreadLocal<HashMap<String, Object>> jsonMapContainer = ThreadLocal.withInitial(() -> new HashMap<>());
+    private static final ThreadLocal<LinkedHashMap<String, Object>> jsonMapContainer
+            = ThreadLocal.withInitial(() -> new LinkedHashMap<>());
 
     public Response success(){
         this.code = 0;
@@ -48,7 +51,7 @@ public final class Response {
         this.timestamp =System.currentTimeMillis();
         Map<String, Object> map = jsonMapContainer.get();
         jsonMapContainer.remove();
-        this.data = map;
+        this.data = (T) map;
         return this;
     }
 
@@ -59,7 +62,7 @@ public final class Response {
         this.timestamp = System.currentTimeMillis();
         Map<String, Object> map = jsonMapContainer.get();
         jsonMapContainer.remove();
-        this.data = map;
+        this.data = (T) map;
         return this;
     }
     public Response custom(HttpCodeEnum httpCodeEnum) {
@@ -69,30 +72,53 @@ public final class Response {
         this.timestamp = System.currentTimeMillis();
         Map<String, Object> map = jsonMapContainer.get();
         jsonMapContainer.remove();
-        this.data = map;
+        this.data = (T) map;
         return this;
     }
+
     public static void data(String key, Object value) {
         jsonMapContainer.get().put(key, value);
     }
 
-    public Response data(Object data){
+    public Response data(T data){
         this.data = data;
         return this;
     }
 
     public static void pageBean(Object page,Object list) {
-        jsonMapContainer.get().put("list", list);
         jsonMapContainer.get().put("page", page);
+        jsonMapContainer.get().put("list", list);
+    }
+    public static void pageBean(PageBean<?> pageBean) {
+        jsonMapContainer.get().put("page", pageBean.getPage());
+        jsonMapContainer.get().put("list", pageBean.getList());
     }
     public Response add(String key, Object value) {
         this.jsonMapContainer.get().put(key, value);
+        if(this.data!=null){
+            Map<String, Object> map = jsonMapContainer.get();
+            jsonMapContainer.remove();
+            if(this.data instanceof HashMap){
+                ((Map<String, Object>)this.data).putAll(map);
+            }else{
+                this.data = (T) map;
+            }
+        }
         return this;
     }
 
     public Response page(Object page,Object list) {
-        this.jsonMapContainer.get().put("list", list);
         this.jsonMapContainer.get().put("page", page);
+        this.jsonMapContainer.get().put("list", list);
+        if(this.data!=null){
+            Map<String, Object> map = jsonMapContainer.get();
+            jsonMapContainer.remove();
+            if(this.data instanceof HashMap){
+                ((Map<String, Object>)this.data).putAll(map);
+            }else{
+                this.data = (T) map;
+            }
+        }
         return this;
     }
 }

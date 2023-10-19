@@ -6,7 +6,7 @@
 
 group = 'xyz.acproject'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     //mavenCentral()

@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
  * @date 2021/2/19 23:11
  * @Copyright:2021
  */
-@Component
+@Component("customAccessDeniedHandler")
 public class CustomAccessDeniedHandler implements ServerAccessDeniedHandler {
     private final static Logger LOGGER = LogManager.getLogger(CustomAccessDeniedHandler.class);
 

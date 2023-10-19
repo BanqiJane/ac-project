@@ -1,5 +1,6 @@
 package xyz.acproject.router.advice;
 
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.core.annotation.Order;
@@ -25,7 +26,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.xml.bind.ValidationException;
 import java.nio.file.AccessDeniedException;
-import java.sql.Time;
 import java.util.Set;
 
 /**
@@ -154,15 +154,15 @@ public class ExceptionAdvice {
         return new Response().custom(httpCodeEnum);
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(javax.validation.ValidationException.class)
-    public Response handleValidationException(javax.validation.ValidationException e) {
-        LOGGER.error("参数验证失败:{}", e.getMessage());
-        HttpCodeEnum httpCodeEnum = HttpCodeEnum.paramserror;
-        httpCodeEnum.setCn_msg("参数检验错误");
-        httpCodeEnum.setMsg(e.getMessage());
-        return new Response().custom(httpCodeEnum);
-    }
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    @ExceptionHandler(ValidationException.class)
+//    public Response handleValidationException(ValidationException e) {
+//        LOGGER.error("参数验证失败:{}", e.getMessage());
+//        HttpCodeEnum httpCodeEnum = HttpCodeEnum.paramserror;
+//        httpCodeEnum.setCn_msg("参数检验错误");
+//        httpCodeEnum.setMsg(e.getMessage());
+//        return new Response().custom(httpCodeEnum);
+//    }
 
 //    /**
 //

@@ -6,7 +6,7 @@
 
 group = 'xyz.acproject'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
     compileOnly {
@@ -24,14 +24,42 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'com.mysql:mysql-connector-j'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
-    api project(":security")
-    api project(":router")
+    // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter
+    implementation group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.5.3.1'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-jwt
+    implementation group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.1.1.RELEASE'
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+    // https://mvnrepository.com/artifact/com.alibaba/easyexcel
+    implementation group: 'com.alibaba', name: 'easyexcel', version: '3.2.1'
+    // https://mvnrepository.com/artifact/org.redisson/redisson-spring-data-27
+    implementation group: 'org.redisson', name: 'redisson-spring-data-27', version: '3.22.1'
+//    // https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter
+//    implementation(group: 'org.redisson', name: 'redisson-spring-boot-starter', version: '3.22.1'){
+//        exclude group: 'org.redisson', module: 'redisson-spring-data-31'
+//    }
+    // https://mvnrepository.com/artifact/cn.hutool/hutool-all
+    implementation group: 'cn.hutool', name: 'hutool-all', version: '5.8.20'
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.14'
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation group: 'commons-io', name: 'commons-io', version: '2.13.0'
+
+
+    implementation project(":cache")
+    implementation project(":utils")
+    implementation project(":lang")
+    implementation project(":security")
+    implementation project(":router")
+    implementation project(":router_cache")
+    implementation project(":datasource_mybatis")
+    implementation project(":email")
+    implementation fileTree(dir: 'lib', includes: ['*.jar'])
 }
 
 test {

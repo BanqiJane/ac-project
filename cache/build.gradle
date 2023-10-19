@@ -6,7 +6,7 @@
 
 group = 'xyz.acproject'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
     compileOnly {
@@ -22,14 +22,19 @@ repositories {
 }
 
 dependencies {
-    api 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
+    api ('org.springframework.boot:spring-boot-starter-data-redis-reactive') {
+        exclude group: 'redis.clients', module: 'jedis'
+    }
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    api 'org.springframework.boot:spring-boot-starter-aop'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-pool2
     api group: 'org.apache.commons', name: 'commons-pool2', version: '2.11.1'
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-    api group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.0'
+    api group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.15.1'
+    // https://mvnrepository.com/artifact/org.redisson/redisson-spring-data-27
+    api group: 'org.redisson', name: 'redisson-spring-data-27', version: '3.22.1'
     api project(":lang")
     api project(":utils")
 
@@ -41,6 +46,6 @@ test {
 tasks {
     bootJar { mainClass = "NONE" }
 }
-jar{
+jar {
     enabled = true
 }

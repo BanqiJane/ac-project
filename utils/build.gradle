@@ -6,7 +6,7 @@
 
 group = 'xyz.acproject'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
     compileOnly {
@@ -27,13 +27,13 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-    api group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.2.2'
+    api group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.15.1'
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310
-    api group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.13.2'
+    api group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.14.2'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     api group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
     // https://mvnrepository.com/artifact/joda-time/joda-time
-    api group: 'joda-time', name: 'joda-time', version: '2.10.14'
+    api group: 'joda-time', name: 'joda-time', version: '2.12.5'
     // https://mvnrepository.com/artifact/com.alibaba/fastjson
     api group: 'com.alibaba', name: 'fastjson', version: '1.2.83'
     // https://mvnrepository.com/artifact/commons-codec/commons-codec
@@ -43,19 +43,23 @@ dependencies {
 //    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
 //    api group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.1'
     // https://mvnrepository.com/artifact/com.google.zxing/core
-    api group: 'com.google.zxing', name: 'core', version: '3.4.1'
+    api group: 'com.google.zxing', name: 'core', version: '3.5.1'
     // https://mvnrepository.com/artifact/com.google.zxing/javase
-    api group: 'com.google.zxing', name: 'javase', version: '3.4.1'
+    api group: 'com.google.zxing', name: 'javase', version: '3.5.1'
     // https://mvnrepository.com/artifact/net.glxn/qrgen
     api group: 'net.glxn', name: 'qrgen', version: '1.4'
     // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
     compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
     // https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api
     compileOnly group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.3'
+//    // https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
+//    compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.0.0'
+//    // https://mvnrepository.com/artifact/jakarta.servlet.jsp/jakarta.servlet.jsp-api
+//    compileOnly group: 'jakarta.servlet.jsp', name: 'jakarta.servlet.jsp-api', version: '3.1.1'
     // https://mvnrepository.com/artifact/com.qiniu/qiniu-java-sdk
-    api group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.10.0'
+    api group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.12.1'
     // https://mvnrepository.com/artifact/net.coobird/thumbnailator
-    api group: 'net.coobird', name: 'thumbnailator', version: '0.4.17'
+    api group: 'net.coobird', name: 'thumbnailator', version: '0.4.19'
     // https://mvnrepository.com/artifact/io.vavr/vavr
     api group: 'io.vavr', name: 'vavr', version: '0.10.4'
     // https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on

@@ -1,7 +1,5 @@
 package xyz.acproject.utils;
 
-import java.util.*;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -9,6 +7,8 @@ import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
 
 /**
  * 依赖于fastjson包

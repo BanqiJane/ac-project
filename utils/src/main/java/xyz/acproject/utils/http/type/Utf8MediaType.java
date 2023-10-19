@@ -1,6 +1,5 @@
 package xyz.acproject.utils.http.type;
 
-import lombok.Data;
 import okhttp3.MediaType;
 
 /**

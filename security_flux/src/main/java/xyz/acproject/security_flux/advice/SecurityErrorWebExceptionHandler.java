@@ -52,13 +52,14 @@ public class SecurityErrorWebExceptionHandler extends AbstractErrorWebExceptionH
                         .body(BodyInserters.fromValue(new Response().add("url", request.exchange().getRequest().getURI().toString()).custom(HttpCodeEnum.notfound)));
                 // method no support
             } else if (e instanceof MethodNotAllowedException) {
-                LOGGER.error("HTTP方法不匹配:{}", e.getMessage());
+                LOGGER.error("HTTP方法不匹配:{},url:{}", e.getMessage(), request.uri().toString());
                 return ServerResponse.status(HttpStatus.METHOD_NOT_ALLOWED)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromValue(new Response().custom(HttpCodeEnum.requestmethoderror)));
                 //media type no support  2022.04.28 remove MediaTypeNotSupportedStatusException
             } else if (e instanceof UnsupportedMediaTypeStatusException || HttpStatus.UNSUPPORTED_MEDIA_TYPE.equals(((ResponseStatusException) e).getStatus())) {
-                LOGGER.error("不支持的HTTP请求类型:{}", e.getMessage());
+            } else if (e instanceof UnsupportedMediaTypeStatusException || HttpStatus.UNSUPPORTED_MEDIA_TYPE.equals(((ResponseStatusException) e).getStatus())) {
+                LOGGER.error("不支持的HTTP请求类型:{},url:{}", e.getMessage(), request.uri().toString());
                 return ServerResponse.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromValue(new Response().custom(HttpCodeEnum.unsupportMediaType)));
